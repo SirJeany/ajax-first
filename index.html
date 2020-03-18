@@ -15,24 +15,19 @@
       </header>
       <div class="row">
         <main class="col-sm-10">
-          <form>
+          <form id="cityForm">
             <div class="form-group">
-              <label for="passwordInp">Password</label>
-              <input type="password" id="passwordInp" class="form-control" required>
-              <small>Please enter a password between 6 and 12 characters.</small>
+              <label for="cityInp">Enter city:</label>
+              <input type="text" id="cityInp" class="form-control" required>
+              <small>Please enter a City.</small>
             </div>
-            <div class="form-group">
-              <label for="passwordConfInp">Confirm Password</label>
-              <input type="password" id="passwordConfInp" class="form-control" required>
-              <small style="display: block;">Please re-enter password.</small>
-              <small style="display: none;" class="text-danger" id="errorMessage">Both passwords do not match</small>
-            </div>
-            <div class="form-group">
-              <label for="emailInp">Email</label>
-              <input type="email" id="emailInp" class="form-control" required>
-            </div>
-            <button type="submit" id="submitBtn" class="btn btn-primary" >Submit</button>
+            
+            <button type="submit" id="submitBtn" class="btn btn-primary" >Check Weather</button>
           </form>
+
+          <section class="col-sm-10" id="weaterReport">
+
+          </section>
         </main>
       </div>
     </div>
