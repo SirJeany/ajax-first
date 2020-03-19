@@ -30,6 +30,7 @@ cityForm.addEventListener('submit', ($event) => {
 apiRequest.onreadystatechange = () => {
     if(apiRequest.readyState === 4){
         if(apiRequest.status === 404){
+            weatherReport.removeChild(result);
             return resultHeading.textContent = "City not found";
         }
 
