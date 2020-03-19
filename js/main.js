@@ -5,8 +5,12 @@ const cityInp = document.getElementById('cityInp');
 const submitBtn = document.getElementById('submitBtn');
 const weatherReport = document.getElementById('weatherReport');
 
-let resultHeading = document.createElement('h3');
-let result = document.createElement('p');
+// elements to display all the different weather properties:
+let resultHeading = document.createElement('h3'); // City name
+let description = document.createElement('p'); // Cloudy or clear
+let temp = document.createElement('p'); // Temperature (received in Kelvin: so subtract 273.15 )
+let windSpeed = document.createElement('p'); // Windspeed
+let timezone = document.createElement('p'); // Timezone
 
 let apiRequest = new XMLHttpRequest();
 
@@ -30,17 +34,20 @@ cityForm.addEventListener('submit', ($event) => {
 apiRequest.onreadystatechange = () => {
     if(apiRequest.readyState === 4){
         if(apiRequest.status === 404){
-            weatherReport.removeChild(result);
+            weatherReport.removeChild(description);
             return resultHeading.textContent = "City not found";
         }
 
     }
 
+    //For testing:
+    console.log(JSON.parse(apiRequest.responseText));
+
     const response = JSON.parse(apiRequest.response);
     resultHeading.textContent = response.name + ':';
-    result.textContent = 'Sky looks like: ' + response.weather[0].main;
+    description.textContent = 'Sky looks like ' + response.weather[0].description + '.';
 
     weatherReport.appendChild(resultHeading);
-    weatherReport.appendChild(result);
+    weatherReport.appendChild(description);
 };
 
