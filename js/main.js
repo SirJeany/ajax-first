@@ -15,15 +15,31 @@ cityForm.addEventListener('submit', ($event) => {
     $event.preventDefault();
 
     const chosenCity = cityInp.value;
-    resultHeading.textContent = chosenCity + ":";
-    weatherReport.appendChild(resultHeading);
 
     apiRequest.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=' + chosenCity + '&appid=ad897ca0752a545d18557cce8eeacfad');
 
     apiRequest.send();
 
     // Add the information to the weather report section:
-    result.textContent = "HELLO " + apiRequest.responseText;
-    weatherReport.appendChild(result);
+    // result.textContent = "HELLO " + apiRequest.responseText;
+    // weatherReport.appendChild(result);
     
 })
+
+// Get the state change:
+apiRequest.onreadystatechange = () => {
+    if(apiRequest.readyState === 4){
+        if(apiRequest.status === 404){
+            return resultHeading.textContent = "City not found";
+        }
+
+    }
+
+    const response = JSON.parse(apiRequest.response);
+    resultHeading.textContent = response.name + ':';
+    result.textContent = 'Sky looks like: ' + response.weather[0].main;
+
+    weatherReport.appendChild(resultHeading);
+    weatherReport.appendChild(result);
+};
+
