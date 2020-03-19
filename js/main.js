@@ -44,10 +44,18 @@ apiRequest.onreadystatechange = () => {
     console.log(JSON.parse(apiRequest.responseText));
 
     const response = JSON.parse(apiRequest.response);
-    resultHeading.textContent = response.name + ':';
-    description.textContent = 'Sky looks like ' + response.weather[0].description + '.';
+    resultHeading.textContent = response.name + ':'; // set the heading
+    description.textContent = 'Sky looks like ' + response.weather[0].description + '.'; // set the description
+    temp.textContent = (response.main.temp - 273.15) + '°C';
+    windSpeed = response.wind.speed + 'kms, direction: ' + response.wind.deg + '°';
+    console.log(windSpeed);
+    timezone = 'Timezone: ' + response.timezone;
 
     weatherReport.appendChild(resultHeading);
     weatherReport.appendChild(description);
+    weatherReport.appendChild(temp);
+    weatherReport.appendChild(windSpeed);
+    weatherReport.appendChild(timezone);
+
 };
 
